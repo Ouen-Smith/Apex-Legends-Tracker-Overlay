@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Teko&display=swap");
+
+body {
+  background: transparent;
+}
+.name {
+  font-size: 100px;
+  font-family: "Teko", sans-serif;
+  text-align: center;
+  color: white;
+  position: relative;
+  isolation: isolate;
+  --background-color: hsla(229, 15%, 23%, 50);
+  --border-color: white;
+  --border-width: 0.1em;
+  --edge-size: 1em;
+
+  display: inline-grid;
+  padding: 1em;
+  border: 0;
+  background: var(--background-color);
+  clip-path: polygon(
+    /* top left 1 */ 0% var(--edge-size),
+    /* top left 2 */ var(--edge-size) 0%,
+    /* top right */ 100% 0,
+    /* bottom right */ 100% calc(100% - var(--edge-size)),
+    /* bottom right 2 */ calc(100% - var(--edge-size)) 100%,
+    /* bottom left */ 0 99%
+  );
+}
+
+.name::before,
+.name::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.name:before {
+  background: var(--border-color);
+  z-index: -2;
+}
+
+.name::after {
+  background: var(--background-color);
+  z-index: -1;
+
+  clip-path: polygon(
+    /* top left 1 */ var(--border-width)
+      calc(var(--edge-size) + var(--border-width) * 0.5),
+    /* top left 2 */ calc(var(--edge-size) + var(--border-width) * 0.5)
+      var(--border-width),
+    /* top right */ calc(100% - var(--border-width)) var(--border-width),
+    /* bottom right - 1 */ calc(100% - var(--border-width))
+      calc(100% - calc(var(--edge-size) + var(--border-width) * 0.5)),
+    /* bottom right - 2 */
+      calc(100% - calc(var(--edge-size) + var(--border-width) * 0.5))
+      calc(100% - var(--border-width)),
+    /* bottom left */ calc(var(--border-width)) calc(100% - var(--border-width))
+  );
+}
